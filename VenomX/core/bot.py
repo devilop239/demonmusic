@@ -1,13 +1,8 @@
-
 # All rights reserved.
-#
 import uvloop
-
 uvloop.install()
 
-
 import sys
-
 from pyrogram import Client
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import (
@@ -18,9 +13,7 @@ from pyrogram.types import (
 )
 
 import config
-
-from ..logging import LOGGER
-
+from VenomX.logger_config import LOGGER  # ✅ Fixed import
 
 class AyuBot(Client):
     def __init__(self):
@@ -50,10 +43,9 @@ class AyuBot(Client):
             LOGGER(__name__).error(
                 "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
             )
-            # sys.exit()
+
         if config.SET_CMDS == str(True):
             try:
-
                 await self.set_bot_commands(
                     commands=[
                         BotCommand("start", "sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ"),
@@ -76,30 +68,4 @@ class AyuBot(Client):
                         BotCommand("resume", "ʀᴇsᴜᴍᴇ ᴛʜᴇ ᴘᴀᴜsᴇᴅ sᴏɴɢ"),
                         BotCommand("end", "ᴄʟᴇᴀʀ ᴛʜᴇ ǫᴜᴇᴜᴇ ᴀᴍᴅ ʟᴇᴀᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛ"),
                         BotCommand("shuffle", "ʀᴀɴᴅᴏᴍʟʏ sʜᴜғғʟᴇs ᴛʜᴇ ǫᴜᴇᴜᴇᴅ ᴘʟᴀʏʟɪsᴛ."),
-                        BotCommand(
-                            "playmode",
-                            "ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴄʜᴀɴɢᴇ ᴛʜᴇ ᴅᴇғᴀᴜʟᴛ ᴘʟᴀʏᴍᴏᴅᴇ ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ",
-                        ),
-                        BotCommand(
-                            "settings",
-                            "Oᴘᴇɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴏғ ᴛʜᴇ ᴍᴜsɪᴄ ʙᴏᴛ ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ.",
-                        ),
-                    ],
-                    scope=BotCommandScopeAllChatAdministrators(),
-                )
-            except:
-                pass
-        else:
-            pass
-        try:
-            a = await self.get_chat_member(config.LOGGER_ID, self.id)
-            if a.status != ChatMemberStatus.ADMINISTRATOR:
-                LOGGER(__name__).error("Please promote Bot as Admin in Logger Group")
-                sys.exit()
-        except Exception:
-            pass
-        if get_me.last_name:
-            self.name = get_me.first_name + " " + get_me.last_name
-        else:
-            self.name = get_me.first_name
-        LOGGER(__name__).info(f"MusicBot Started as {self.name}")
+                        BotCommand("play
