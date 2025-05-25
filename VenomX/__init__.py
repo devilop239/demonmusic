@@ -8,7 +8,7 @@ from VenomX.core.git import git
 from VenomX.core.userbot import Userbot
 from VenomX.misc import dbb, heroku, sudo
 
-from .logging import LOGGER
+from VenomX.logger_config import LOGGER
 
 # Directories
 dirr()
