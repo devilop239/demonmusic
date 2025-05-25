@@ -8,8 +8,7 @@ from pyrogram import Client
 
 import config
 
-from ..logging import LOGGER
-
+from VenomX.logger_config import LOGGER
 
 TEMP_MONGODB = "mongodb+srv://usvenom22:a5t0d6w&@cluster0.uozqz80.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
