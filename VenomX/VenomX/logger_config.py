@@ -1,10 +1,7 @@
+# logger_config.py
 
-# All rights reserved.
-
-
-import logger_config
+import logging
 from logging.handlers import RotatingFileHandler
-
 from config import LOG_FILE_NAME
 
 logging.basicConfig(
@@ -22,7 +19,6 @@ logging.getLogger("pytgcalls").setLevel(logging.ERROR)
 logging.getLogger("pymongo").setLevel(logging.ERROR)
 logging.getLogger("httpx").setLevel(logging.ERROR)
 
-# Setting ntgcalls logger level and disabling propagation
 ntgcalls_logger = logging.getLogger("ntgcalls")
 ntgcalls_logger.setLevel(logging.CRITICAL)
 ntgcalls_logger.propagate = False
