@@ -13,7 +13,7 @@ from pyrogram.types import (
 )
 
 import config
-from VenomX.logger_config import LOGGER  # ✅ Fixed import
+from VenomX.logger_config import LOGGER  # ✅ fixed import
 
 class AyuBot(Client):
     def __init__(self):
@@ -37,7 +37,7 @@ class AyuBot(Client):
         try:
             await self.send_message(
                 config.LOGGER_ID,
-                text=f"<u><b>{self.mention} ʙᴏᴛ sᴛᴀʀᴛᴇᴅ :</b><u>\n\nɪᴅ : <code>{self.id}</code>\nɴᴀᴍᴇ : {self.name}\nᴜsᴇʀɴᴀᴍᴇ : @{self.username}",
+                text=f"<u><b>{self.mention} ʙᴏᴛ sᴛᴀʀᴛᴇᴅ :</b></u>\n\nɪᴅ : <code>{self.id}</code>\nɴᴀᴍᴇ : {self.name}\nᴜsᴇʀɴᴀᴍᴇ : @{self.username}",
             )
         except:
             LOGGER(__name__).error(
@@ -66,6 +66,27 @@ class AyuBot(Client):
                         BotCommand("skip", "ᴍᴏᴠᴇ ᴛᴏ ɴᴇxᴛ ᴛʀᴀᴄᴋ ɪɴ ǫᴜᴇᴜᴇ"),
                         BotCommand("pause", "ᴘᴀᴜsᴇ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴘʟᴀʏɪɴɢ sᴏɴɢ"),
                         BotCommand("resume", "ʀᴇsᴜᴍᴇ ᴛʜᴇ ᴘᴀᴜsᴇᴅ sᴏɴɢ"),
-                        BotCommand("end", "ᴄʟᴇᴀʀ ᴛʜᴇ ǫᴜᴇᴜᴇ ᴀᴍᴅ ʟᴇᴀᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛ"),
+                        BotCommand("end", "ᴄʟᴇᴀʀ ᴛʜᴇ ǫᴜᴇᴜᴇ ᴀɴᴅ ʟᴇᴀᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛ"),
                         BotCommand("shuffle", "ʀᴀɴᴅᴏᴍʟʏ sʜᴜғғʟᴇs ᴛʜᴇ ǫᴜᴇᴜᴇᴅ ᴘʟᴀʏʟɪsᴛ."),
-                        BotCommand("play
+                        BotCommand("playmode", "ᴄʜᴀɴɢᴇ ᴅᴇғᴀᴜʟᴛ ᴘʟᴀʏᴍᴏᴅᴇ ɪɴ ᴛʜɪs ᴄʜᴀᴛ"),
+                        BotCommand("settings", "ᴏᴘᴇɴ ᴍᴜsɪᴄ ʙᴏᴛ sᴇᴛᴛɪɴɢs ɪɴ ᴛʜɪs ᴄʜᴀᴛ"),
+                    ],
+                    scope=BotCommandScopeAllChatAdministrators(),
+                )
+            except:
+                pass
+
+        try:
+            a = await self.get_chat_member(config.LOGGER_ID, self.id)
+            if a.status != ChatMemberStatus.ADMINISTRATOR:
+                LOGGER(__name__).error("Please promote Bot as Admin in Logger Group")
+                sys.exit()
+        except Exception:
+            pass
+
+        if get_me.last_name:
+            self.name = get_me.first_name + " " + get_me.last_name
+        else:
+            self.name = get_me.first_name
+
+        LOGGER(__name__).info(f"MusicBot Started as {self.name}")
