@@ -1,4 +1,3 @@
-
 # All rights reserved.
 #
 import asyncio
@@ -17,10 +16,10 @@ assistantids = []
 class Userbot(Client):
     def __init__(self):
         self.clients = []
-        self.sessions = config.STRING_SESSIONS
+        # ✅ Ensure session(s) is always a list
+        self.sessions = config.STRING_SESSIONS if isinstance(config.STRING_SESSIONS, list) else [config.STRING_SESSIONS]
 
         for i, session in enumerate(self.sessions, start=1):
-
             client = Client(
                 f"VenomString{i}",
                 api_id=config.API_ID,
@@ -44,7 +43,7 @@ class Userbot(Client):
                     await client.send_message(config.LOGGER_ID, "Assistant Started")
                 except Exception:
                     LOGGER(__name__).error(
-                        f"Assistant Account {index} has failed to send message in Loggroup Make sure you have added assistsant in Loggroup."
+                        f"Assistant Account {index} has failed to send message in Loggroup. Make sure you have added assistant in Loggroup."
                     )
                     sys.exit(1)
 
@@ -62,14 +61,13 @@ class Userbot(Client):
             sys.exit(1)
 
     async def start(self):
-        tasks = []  # List to hold start tasks
+        tasks = []
         for i, client in enumerate(self.clients, start=1):
             task = self._start(client, i)
             tasks.append(task)
         await asyncio.gather(*tasks)
 
     async def stop(self):
-        """Gracefully stop all clients."""
         tasks = [client.stop() for client in self.clients]
         await asyncio.gather(*tasks)
     
