@@ -8,7 +8,7 @@ from pyrogram import Client
 from pyrogram.errors import ChatWriteForbidden
 import config
 
-from ..logging import LOGGER
+from VenomX.logger_config import LOGGER
 
 assistants = []
 assistantids = []
