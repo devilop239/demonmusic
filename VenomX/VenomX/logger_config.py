@@ -2,7 +2,7 @@
 # All rights reserved.
 
 
-import logging
+import logger_config
 from logging.handlers import RotatingFileHandler
 
 from config import LOG_FILE_NAME
