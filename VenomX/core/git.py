@@ -11,7 +11,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 
 import config
 
-from ..logging import LOGGER
+from VenomX.logger_config import LOGGER
 
 loop = asyncio.get_event_loop_policy().get_event_loop()
 
