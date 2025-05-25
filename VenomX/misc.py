@@ -11,7 +11,7 @@ from pyrogram import filters
 import config
 from VenomX.core.mongo import pymongodb
 
-from .logging import LOGGER
+from VenomX.logger_config import LOGGER
 
 SUDOERS = filters.user()
 
