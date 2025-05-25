@@ -5,8 +5,8 @@ import importlib
 from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
-import config
-from config import BANNED_USERS
+from config import config
+from config.config import BANNED_USERS
 from VenomX import HELPABLE, app, userbot
 from VenomX.core.call import Ayush
 from VenomX.plugins import ALL_MODULES
