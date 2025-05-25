@@ -1,17 +1,16 @@
-#
 # All rights reserved.
 import importlib
 
 from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
-from config import config
-from config.config import BANNED_USERS
+from config.config import BANNED_USERS       # ✅ From config/config.py
+import config.config as config               # ✅ To access config.STRING_SESSIONS etc.
 from VenomX import HELPABLE, app, userbot
 from VenomX.core.call import Ayush
 from VenomX.plugins import ALL_MODULES
 from VenomX.utils.database import get_banned_users, get_gbanned
-from VenomX.logger_config import LOGGER  # ✅ updated import here
+from VenomX.logger_config import LOGGER
 
 
 async def init():
@@ -23,7 +22,7 @@ async def init():
 
     if not config.SPOTIFY_CLIENT_ID and not config.SPOTIFY_CLIENT_SECRET:
         LOGGER("VenomX").warning(
-            "No Spotify Vars defined. Your bot won't be able to play spotify queries."
+            "No Spotify Vars defined. Your bot won't be able to play Spotify queries."
         )
 
     try:
